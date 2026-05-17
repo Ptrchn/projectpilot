@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 
@@ -7,6 +7,13 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('projectpilot_token')) {
+      navigate('/', { replace: true });
+    }
+  }, [navigate]);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
