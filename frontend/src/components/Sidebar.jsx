@@ -16,7 +16,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-72 bg-slate-950/95 border-r border-slate-800 px-6 py-8 text-slate-100 shadow-2xl shadow-slate-950/40 z-40">
+    <aside className="fixed left-0 top-0 h-screen w-72 overflow-y-auto bg-slate-950 border-r border-slate-800 px-6 py-8 text-slate-100 z-50">
       <div className="mb-10">
         <div className="mb-2 text-sm uppercase tracking-[0.2em] text-slate-500">ProjectPilot AI</div>
         <h1 className="text-2xl font-semibold text-white">Project Control</h1>
