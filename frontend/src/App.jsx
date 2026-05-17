@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Projects from './pages/Projects';
 import Tasks from './pages/Tasks';
@@ -9,12 +9,15 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const token = localStorage.getItem('projectpilot_token');
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  const showSidebar = token && !isAuthPage;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      {token ? <Sidebar /> : null}
+      {showSidebar && <Sidebar />}
 
-      {token && (
+      {showSidebar && (
         <div className="fixed inset-x-0 top-0 z-50 border-b border-slate-800 bg-slate-950/95 p-3 shadow-sm shadow-slate-950/40 md:hidden">
           <div className="flex items-center justify-between gap-3">
             <span className="text-sm font-semibold text-white">ProjectPilot AI</span>
@@ -27,7 +30,7 @@ function App() {
         </div>
       )}
 
-      <main className={`${token ? 'md:pl-72' : ''} ${token ? 'pt-20 md:pt-0' : ''} p-4 sm:p-6`}>
+      <main className={`${showSidebar ? 'md:pl-72' : ''} ${showSidebar ? 'pt-20 md:pt-0' : ''} p-4 sm:p-6`}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

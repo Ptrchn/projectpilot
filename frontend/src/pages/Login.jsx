@@ -9,9 +9,11 @@ export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('projectpilot_token')) {
+    const token = localStorage.getItem('projectpilot_token');
+    if (token) {
       navigate('/', { replace: true });
     }
+    return () => {};
   }, [navigate]);
 
 
